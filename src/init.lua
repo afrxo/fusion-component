@@ -18,7 +18,8 @@ export type Fragment<Props> = {
     destroy: (Fragment<Props>) -> ()
 }
 
-local ComponentSymbol = newproxy()
+local ComponentSymbol = newproxy(true)
+getmetatable(ComponentSymbol).__index = { name = "FusionComponent", type = "Symbol" }
 
 local function reconcileProps(props)
     local reconciled = {}
